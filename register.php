@@ -30,7 +30,8 @@
                 <img src="assets\images\logo\vvt_short_logo.png" width="75px" class="login-section-logo">
                 <h5>USER REGISTRATION FORM</h5>
                 <P>Please fill in your credentials to continue</P>
-                <form>
+                <form method="post" action="server.php">
+                    <input type="hidden" name="operation_type" value="register">
                     <div class="form-group top-spacing">
                         <input class="form-control" type="text" name="name" id="user_name" placeholder="Enter Your Name">
                     </div>
