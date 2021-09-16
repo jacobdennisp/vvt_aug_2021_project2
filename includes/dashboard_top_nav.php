@@ -16,7 +16,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="avatarPanelToggle">
                 <a class="dropdown-item" href="#">Dashboard</a>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="server.php?operation_type=logout">Logout</a>
                 </div>
             </li>
 
