@@ -6,6 +6,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION["loggedin"]!==true){
     exit;
 }
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION["loggedin"]!==true){
             <?php include "includes\dashboard_side_nav.php"; ?>
         </header>
        <main class="alignment">
-           <h5>Welcome Jacob</h5>
+           <h5>Welcome <?php echo $_SESSION['email']; ?></h5>
        </main>
        <?php include "includes\\footer.php"; ?>
     </body>

@@ -35,12 +35,14 @@
                     mysqli_stmt_bind_result($statement, $id, $email, $password);
                     
                     if (mysqli_stmt_fetch($statement)) {
+                        
                         if (password_verify($_POST['password'], $password)) {
                             
                             session_start();
                             $_SESSION["loggedin"]=true;
                             $_SESSION["id"]=$id;
                             $_SESSION['email']=$email;
+                            $_SESSION['name']=$name;
                             header("location:dashboard_landing.php");
                         } else {
                             echo  "Invalid username or password";
