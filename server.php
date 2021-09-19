@@ -53,6 +53,43 @@
                 echo "soemthing went wrong";
             }
         }
+    }else if(isset($_POST['operation_type']) && $_POST['operation_type']=="update_profile"){
+        session_start();
+        if(isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['phone_no']) && !empty($_POST['phone_no']) ){
+            $sql = "UPDATE users SET name= ?, email=? , phone_no=? WHERE id = ?";
+            if($statement=mysqli_prepare($connection,$sql)){
+                mysqli_stmt_bind_param($statement,'sssi',$name,$email,$phoneno,$id);
+                $name=$_POST['name'];
+                $email=$_POST['email'];
+                $phoneno=$_POST['phone_no'];
+                $id=$_POST['id'];
+
+                if(mysqli_stmt_execute($statement)){
+                    unset($_SESSION["success_status"]);
+                    $_SESSION["success_status"]=true;
+                    header("location:dashboard_user_profile.php");
+                    
+                    exit();
+                }else{
+                    unset($_SESSION["success_status"]);
+                    $_SESSION["success_status"]=false;
+                    header("location:dashboard_user_profile.php");
+                    exit();
+                }
+                mysqli_stmt_close($statement);
+            }
+            mysqli_close($connection);
+            echo 1;
+        }else{
+            //0 when 0 is encountered we will get a alert telling nothing to update
+            header("location:dashboard_user_profile.php");
+            unset($_SESSION["success_status"]);
+            $_SESSION["success_status"]=false;
+            unset($_SESSION["update_status"]);
+            $_SESSION['update_status']=0;
+            echo 2;
+        }
+
     }else if(isset($_GET['operation_type']) && $_GET['operation_type']=="logout"){
         session_start();
         $_SESSION=array();
@@ -62,4 +99,4 @@
     }
     
 
-?>
+?>}
