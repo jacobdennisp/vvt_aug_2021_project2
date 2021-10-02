@@ -43,10 +43,12 @@ if(isset($_SESSION['loggedin'])&& $_SESSION["loggedin"]===true){
                 <form method="post" action="server.php">
                 <input type="hidden" name="operation_type" value="login">
                     <div class="form-group top-spacing">
-                        <input class="form-control" type="text" name="email" id="user_email" placeholder="Enter Your Email">
+                        <input class="form-control" type="text" name="email" id="user_email" placeholder="Enter Your Email" required>
+                        <span id="email-err" class="text-danger"></span>
                     </div>
                     <div class="form-group top-spacing">
-                        <input  class="form-control" type="password" name="password" id="user_password" placeholder="Enter Your Password">
+                        <input  class="form-control" type="password" name="password" id="user_password" placeholder="Enter Your Password"  required>
+                        <span id="password-err"  class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input class="form-check-inline" type="checkbox" name="signedIn" value="1">Keep me Signed in
@@ -62,5 +64,16 @@ if(isset($_SESSION['loggedin'])&& $_SESSION["loggedin"]===true){
         </div>
         <center>
        <?php include "includes\\footer.php"; ?>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $("#user_email").on('keyup',function(){
+                if($("#user_email").val()==''){
+                    $("#email-err").text('Email is Required');
+                }else{
+                    $("#email-err").text('');
+                }
+            });
+        </script>
+
     </body>
 </html>
